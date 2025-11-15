@@ -4,7 +4,7 @@
   ansible.builtin.file:
     path: "{{ directory.path }}"
     state: directory
-    mode: "{{ directory.mode | default(755) }}"
+    mode: "{{ directory.mode | default('755') }}"
   become: "{{ k3s_become }}"
   when:
     - directory.path is defined
