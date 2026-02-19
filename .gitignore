@@ -12,3 +12,4 @@ ansible.cfg
 pyratlabs-issue-dump.txt
 .cache
 /.idea/
+.vscode/
