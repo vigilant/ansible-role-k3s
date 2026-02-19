@@ -1,0 +1,5 @@
+- name: Fetch k3s API server CA certificate from control node
+  ansible.builtin.fetch:
+    src: /var/lib/rancher/k3s/server/tls/server-ca.crt
+    dest: /tmp/server-ca.crt
+    flat: yes

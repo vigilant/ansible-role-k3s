@@ -1,0 +1,7 @@
+- name: Copy k3s API server CA certificate to general cert store
+  ansible.builtin.copy:
+    src: /tmp/server-ca.crt
+    dest: /etc/ssl/certs/server-ca.crt
+    owner: root
+    group: root
+    mode: "0644"

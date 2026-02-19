@@ -1,0 +1,7 @@
+- name: Copy k3s API server CA certificate to node
+  ansible.builtin.copy:
+    src: /tmp/server-ca.crt
+    dest: /etc/rancher/k3s/server-ca.crt
+    owner: root
+    group: root
+    mode: "0644"

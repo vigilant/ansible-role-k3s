@@ -1,0 +1,19 @@
+---
+# Distribute k3s API server CA certificate to all nodes
+# Fetch from primary control node and copy to all nodes
+
+- name: Fetch k3s API server CA certificate from control node
+  ansible.builtin.fetch:
+    src: /var/lib/rancher/k3s/server/tls/server-ca.crt
+    dest: /tmp/server-ca.crt
+    flat: yes
+  delegate_to: "{{ k3s_control_delegate }}"
+  run_once: true
+
+- name: Copy k3s API server CA certificate to node
+  ansible.builtin.copy:
+    src: /tmp/server-ca.crt
+    dest: /etc/rancher/k3s/server-ca.crt
+    owner: root
+    group: root
+    mode: "0644"

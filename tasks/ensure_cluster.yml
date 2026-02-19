@@ -1,5 +1,4 @@
 ---
-
 - name: "Ensure cluster token is captured from {{ k3s_control_delegate }}"
   ansible.builtin.slurp:
     path: "{{ k3s_runtime_config['data-dir'] | default(k3s_data_dir) }}/server/token"
@@ -97,6 +96,25 @@
   when:
     - not k3s_skip_validation
     - not k3s_skip_post_checks
+
+- name: Fetch k3s API server CA certificate from control node
+  ansible.builtin.import_tasks: fetch_api_ca.yml
+  when:
+    - inventory_hostname == k3s_control_delegate
+
+- name: Copy k3s API server CA certificate to control plane cert store
+  ansible.builtin.import_tasks: copy_api_ca_control_plane.yml
+  when:
+    - k3s_control_node
+    - not k3s_primary_control_node
+
+- name: Copy k3s API server CA certificate to agent cert store
+  ansible.builtin.import_tasks: copy_api_ca_agent.yml
+  when:
+    - not k3s_control_node
+
+- name: Copy k3s API server CA certificate to general cert store
+  ansible.builtin.import_tasks: copy_api_ca_general.yml
 
 - name: Flush Handlers
   ansible.builtin.meta: flush_handlers

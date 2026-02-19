@@ -1,0 +1,20 @@
+---
+# Copy k3s API server CA certificate to control plane cert store
+# This task copies the CA certificate to the location required by k3s control plane nodes
+# Path: /etc/rancher/k3s/server-ca.crt
+
+- name: Ensure control plane CA cert directory exists
+  ansible.builtin.file:
+    path: /etc/rancher/k3s
+    state: directory
+    mode: 0755
+  become: true
+
+- name: Copy API server CA certificate to control plane cert store
+  ansible.builtin.copy:
+    src: /tmp/server-ca.crt
+    dest: /etc/rancher/k3s/server-ca.crt
+    mode: 0644
+    owner: root
+    group: root
+  become: true
