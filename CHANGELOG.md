@@ -14,6 +14,17 @@
 ---
 -->
 
+## 2026-03-10, unreleased (service-architect patch)
+
+### Notable changes
+
+  - fix: respect explicit `k3s_control_delegate` in pre-configuration so
+    agent-only playbook runs do not auto-promote a local host as control node
+  - fix: guard primary-control-node fallback against empty `k3s_controller_list`
+    to avoid list-index failures during agent-only runs
+
+---
+
 ## 2023-06-17, v3.4.2
 
 ### Notable changes

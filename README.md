@@ -338,6 +338,25 @@ ensure a majority in the event of a network partition. If you want to use 2
 members or an even number of members, please set `k3s_use_unsupported_config`
 to `true`.
 
+#### Important note about explicit `k3s_control_delegate`
+
+If you run this role against an agent-only host set (for example, using
+`--limit` to target just workers), the default control-plane auto-detection can
+fail because no control nodes are present in `ansible_play_hosts`.
+
+For dedicated agent-only runs, provide an explicit delegate and keep
+`k3s_build_cluster: true`:
+
+```yaml
+k3s_build_cluster: true
+k3s_control_node: false
+k3s_primary_control_node: false
+k3s_control_delegate: "<existing-control-plane-host>"
+```
+
+With explicit delegate wiring, the role will skip automatic control-node
+promotion and use the provided delegate for registration/token workflow.
+
 #### Important note about `k3s_server_manifests_urls` and `k3s_server_pod_manifests_urls`
 
 To deploy server manifests and server pod manifests from URL, you need to

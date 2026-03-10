@@ -41,6 +41,8 @@
     - k3s_controller_list | length < 1
     - k3s_build_cluster is defined
     - k3s_build_cluster
+    # Respect explicit delegate wiring (e.g., dedicated agent-only playbooks).
+    - k3s_control_delegate is not defined
   block:
     - name: Set the control host
       ansible.builtin.set_fact:
@@ -95,10 +97,11 @@
   ansible.builtin.set_fact:
     k3s_primary_control_node: true
   when:
-    - k3s_controller_list is defined
-    - inventory_hostname == k3s_controller_list[0]
     - k3s_build_cluster is defined
     - k3s_build_cluster
+    - k3s_controller_list is defined
+    - k3s_controller_list | length > 0
+    - inventory_hostname == k3s_controller_list[0]
     - k3s_control_delegate is not defined
 
 - name: Ensure ansible_host is mapped to inventory_hostname
