@@ -44,3 +44,11 @@ once the PR is merged.
 
 PRs are preferred to be merged in as a single commit, so rebasing before
 pushing is recommended, however this isn't a strict rule.
+
+## Downstream fork maintenance
+
+If you contribute through a downstream fork used as a submodule in another
+repository, follow the fork workflow guide for branch naming, upstream sync,
+and submodule pointer updates:
+
+- [Downstream fork workflow](documentation/operations/downstream-fork-workflow.md)

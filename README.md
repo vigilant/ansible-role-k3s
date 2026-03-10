@@ -17,6 +17,14 @@ job. If you're interested, get in touch.
 Please see [Releases](https://github.com/PyratLabs/ansible-role-k3s/releases)
 and [CHANGELOG.md](CHANGELOG.md).
 
+## Downstream Fork Maintainers
+
+If you maintain this role as a fork (for example, as a Git submodule in an
+infrastructure repository), use the documented workflow for branch strategy,
+upstream sync, and parent submodule pointer updates:
+
+- [Downstream fork workflow](documentation/operations/downstream-fork-workflow.md)
+
 ## Requirements
 
 The host you're running Ansible from requires the following Python dependencies:

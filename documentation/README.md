@@ -42,3 +42,4 @@ minimum configuration.
   - [Updating k3s](operations/updating-k3s.md)
   - [Extending a cluster](operations/extending-a-cluster.md)
   - [Shrinking a cluster](operations/shrinking-a-cluster.md)
+  - [Downstream fork workflow](operations/downstream-fork-workflow.md)
